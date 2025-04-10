@@ -106,3 +106,16 @@ php artisan serve
 ```
 
 ---
+
+UPDATE 10/04: 
+
+You'll have to install the basic tailwind CSS model to not throw an error. This is a summary of all the commands: 
+composer install
+cp .env.example .env
+php artisan key:generate
+mkdir -p database && touch database/database.sqlite
+php artisan migrate
+php artisan make:filament-user
+npm install
+npm run dev
+php artisan serve
