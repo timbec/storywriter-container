@@ -16,7 +16,7 @@
     <header class="p-4 bg-gray-100 shadow">
         <nav class="max-w-4xl mx-auto flex gap-6">
             <a href="{{ route('home') }}">Home</a>
-            <a href="{{ route('storywriter') }}">StoryWriter</a>
+            <a href="{{ route('storybook') }}">StoryWriter</a>
             <a href="{{ route('about') }}">About</a>
             <a href="{{ route('contact') }}">Contact</a>
             <a href="{{ route('blog') }}">Blog</a>

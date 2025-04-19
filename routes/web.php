@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\BlogPost;
+use Illuminate\Support\Facades\File;
 
 
 
@@ -19,6 +20,16 @@ Route::get('/blog/{slug}', function ($slug) {
 
 
 Route::view('/', 'pages.home')->name('home');
-Route::view('/storywriter', 'pages.storywriter')->name('storywriter');
+Route::get('/storywriter/{any?}', function () {
+    return File::get(public_path('storywriter/index.html'));
+})->where('any', '.*');
+
+// Route::view('/storywriter', 'pages.storywriter')->name('storywriter');
+// routes/web.php
+// Route::get('/storywriter', function () {
+//     return file_get_contents(public_path('storywriter/index.html'));
+// });
+
+Route::view('/storybook', 'pages.storywriter')->name('storybook');
 Route::view('/about', 'pages.about')->name('about');
 Route::view('/contact', 'pages.contact')->name('contact');
