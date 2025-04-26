@@ -16,20 +16,15 @@ Route::get('/blog/{slug}', function ($slug) {
     return view('blog.show', compact('post'));
 });
 
-// Route::get('/storywriter/{any}', fn () => view('storywriter'))->where('any', '.*');
+use App\Http\Controllers\Api\StoryController;
+
+Route::post('/story', [StoryController::class, 'generate']);
 
 
 Route::view('/', 'pages.home')->name('home');
 Route::get('/storywriter/{any?}', function () {
     return File::get(public_path('storywriter/index.html'));
 })->where('any', '.*');
-
-// Route::view('/storywriter', 'pages.storywriter')->name('storywriter');
-// routes/web.php
-// Route::get('/storywriter', function () {
-//     return file_get_contents(public_path('storywriter/index.html'));
-// });
-
 Route::view('/storybook', 'pages.storywriter')->name('storybook');
 Route::view('/about', 'pages.about')->name('about');
 Route::view('/contact', 'pages.contact')->name('contact');
