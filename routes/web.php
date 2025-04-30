@@ -27,6 +27,6 @@ Route::view('/contact', 'pages.contact')->name('contact');
 
 
 Route::get('/storywriter/{any?}', function () {
-    return File::get(public_path('storywriter_build/index.html'));
+    return File::get(public_path('storywriter/index.html'));
 })->where('any', '.*');
 Route::view('/storybook', 'pages.storywriter')->name('storybook');
