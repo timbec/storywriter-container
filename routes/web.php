@@ -22,9 +22,11 @@ Route::post('/story', [StoryController::class, 'generate']);
 
 
 Route::view('/', 'pages.home')->name('home');
-Route::get('/storywriter/{any?}', function () {
-    return File::get(public_path('storywriter/index.html'));
-})->where('any', '.*');
-Route::view('/storybook', 'pages.storywriter')->name('storybook');
 Route::view('/about', 'pages.about')->name('about');
 Route::view('/contact', 'pages.contact')->name('contact');
+
+
+Route::get('/storywriter/{any?}', function () {
+    return File::get(public_path('storywriter_build/index.html'));
+})->where('any', '.*');
+Route::view('/storybook', 'pages.storywriter')->name('storybook');
