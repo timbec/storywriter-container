@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Story extends Model
 {
-    protected $fillable = ['title', 'content', 'image_url'];
+    protected $fillable = ['title', 'body', 'images'];
 }
 
 
