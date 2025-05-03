@@ -10,20 +10,24 @@ class StoryController extends Controller
 {
     public function store(Request $request)
     {
-        $request->validate([
-            'title' => 'nullable|string|max:255',
-            'content' => 'required|string',
-            'image_url' => 'nullable|url',
-        ]);
 
-        $story = Story::create([
-            'title' => $request->input('title'),
-            'content' => $request->input('content'),
-            'image_url' => $request->input('image_url'),
-        ]);
+        \Log::info('Incoming story request', $request->all());
 
-        return response()->json($story, 201);
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'body' => 'required|string',  
+            'images' => 'nullable|string',
+        ]);
+    
+        $story = \App\Models\Story::create($validated);
+        var_dump($story);
+        // return response()->json(['story' => $story], 201);
+        return response()->json([
+            'message' => 'Story created successfully.',
+        ], 201);
+        
     }
+    
 
     public function index()
     {
