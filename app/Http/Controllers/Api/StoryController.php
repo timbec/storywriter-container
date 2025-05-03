@@ -20,11 +20,10 @@ class StoryController extends Controller
         ]);
     
         $story = \App\Models\Story::create($validated);
-    
+        var_dump($story);
         // return response()->json(['story' => $story], 201);
         return response()->json([
             'message' => 'Story created successfully.',
-            'story' => $story
         ], 201);
         
     }

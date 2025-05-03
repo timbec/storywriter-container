@@ -14,5 +14,6 @@ class VerifyCsrfToken extends Middleware
     protected $except = [
         'api/*',    // ✅ exclude all API routes like /api/stories
         'api/stories', // ✅ exclude specific API route
+        'api/stories/',   // 👈 with trailing slash
     ];
 }

@@ -22,21 +22,12 @@ class StoryResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    public static function form(Form $form): Form
-    {
-        return $form->schema([
-        TextInput::make('title')->required(),
-        Textarea::make('content')->required()->columnSpanFull(),
-        TextInput::make('image_url')->label('Image URL')->url()->nullable(),
-    ]);
-    }
-
     public static function table(Table $table): Table
     {
         
         return $table->columns([
             TextColumn::make('title')->sortable()->searchable(),
-            ImageColumn::make('image_url')->label('Image')->square(),
+            ImageColumn::make('images')->label('Image')->square(),
             TextColumn::make('created_at')->dateTime()->sortable(),
         ])
             ->actions([
