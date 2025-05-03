@@ -54,6 +54,9 @@ return [
 
     'url' => env('APP_URL', 'http://localhost'),
 
+    'storywriter_url' => env('STORYWRITER_URL', 'http://127.0.0.1:8001'),
+
+
     /*
     |--------------------------------------------------------------------------
     | Application Timezone

@@ -1,5 +1,3 @@
-
-
 Here’s a **simple checklist + commands** your partner can follow to get the Laravel + Filament project running locally with SQLite:
 
 ---
@@ -106,3 +104,104 @@ php artisan serve
 ```
 
 ---
+
+UPDATE 10/04: 
+
+You'll have to install the basic tailwind CSS model to not throw an error. This is a summary of all the commands: 
+composer install
+cp .env.example .env
+php artisan key:generate
+mkdir -p database && touch database/database.sqlite
+php artisan migrate
+php artisan make:filament-user
+npm install
+npm run dev
+php artisan serve
+```
+
+---
+
+## 🐳 Docker Deployment
+
+### Prerequisites
+- [Docker](https://docs.docker.com/get-docker/)
+- [Docker Compose](https://docs.docker.com/compose/install/)
+
+### Quick Start with Docker
+
+1. **Build and start the containers**
+```bash
+docker-compose up -d
+```
+
+2. **Install dependencies and set up the application**
+```bash
+# Install PHP dependencies
+docker-compose exec app composer install
+
+# Copy environment file
+docker-compose exec app cp .env.example .env
+
+# Generate application key
+docker-compose exec app php artisan key:generate
+
+# Run migrations
+docker-compose exec app php artisan migrate
+
+# Create admin user
+docker-compose exec app php artisan make:filament-user
+
+# Create storage link
+docker-compose exec app php artisan storage:link
+
+# Install and build frontend assets
+docker-compose exec app npm install
+docker-compose exec app npm run build
+```
+
+3. **Access the application**
+- Main application: `http://localhost:8000`
+- Admin panel: `http://localhost:8000/admin`
+
+### Docker Commands Reference
+
+- **View logs**
+```bash
+docker-compose logs -f
+```
+
+- **Stop containers**
+```bash
+docker-compose down
+```
+
+- **Rebuild containers**
+```bash
+docker-compose up -d --build
+```
+
+- **Access container shell**
+```bash
+docker-compose exec app bash
+```
+
+### Database Configuration
+
+Currently, the application uses SQLite for development and testing purposes. The database file is stored at `database/database.sqlite`. 
+
+For production deployment, we plan to migrate to PostgreSQL. When that happens, you'll need to update the following environment variables in your `.env` file:
+
+```env
+DB_CONNECTION=pgsql
+DB_HOST=db
+DB_PORT=5432
+DB_DATABASE=laravel
+DB_USERNAME=laravel
+DB_PASSWORD=your_password
+```
+
+For now, keep the SQLite configuration:
+```env
+DB_CONNECTION=sqlite
+DB_DATABASE=database/database.sqlite
+```

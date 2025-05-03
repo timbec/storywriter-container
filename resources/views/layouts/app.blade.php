@@ -7,7 +7,7 @@
    
     
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap">
-    <link rel="stylesheet" href="{{ ('css/app.css') }}">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
 </head>
 <body class="bg-white text-gray-800">
@@ -16,6 +16,7 @@
     <header class="p-4 bg-gray-100 shadow">
         <nav class="max-w-4xl mx-auto flex gap-6">
             <a href="{{ route('home') }}">Home</a>
+            <a href="{{ route('storybook') }}">StoryWriter</a>
             <a href="{{ route('about') }}">About</a>
             <a href="{{ route('contact') }}">Contact</a>
             <a href="{{ route('blog') }}">Blog</a>
