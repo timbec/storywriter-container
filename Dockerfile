@@ -33,8 +33,19 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 RUN groupadd -g 1000 www
 RUN useradd -u 1000 -ms /bin/bash -g www www
 
-# Copy existing application directory contents
-COPY . /var/www
+# Copy existing application directory contents - excluding storage links
+COPY --chown=www:www . /var/www
+
+# Remove potential symbolic links causing issues
+RUN rm -rf /var/www/public/storage || true
+
+# Create necessary directories with proper permissions
+RUN mkdir -p /var/www/storage/app/public
+RUN mkdir -p /var/www/storage/framework/cache
+RUN mkdir -p /var/www/storage/framework/sessions
+RUN mkdir -p /var/www/storage/framework/views
+RUN mkdir -p /var/www/storage/logs
+RUN mkdir -p /var/www/bootstrap/cache
 
 # Set permissions
 RUN chown -R www:www /var/www
