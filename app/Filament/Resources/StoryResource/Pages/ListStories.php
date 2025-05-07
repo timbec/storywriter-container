@@ -13,7 +13,8 @@ class ListStories extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            Actions\ViewAction::make(),
+            //Actions\DeleteAction::make(),
         ];
     }
 }
