@@ -15,6 +15,7 @@ class ListStories extends ListRecords
         return [
             Actions\ViewAction::make(),
             //Actions\DeleteAction::make(),
+
         ];
     }
 }
