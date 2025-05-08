@@ -32,6 +32,8 @@ class StoryResource extends Resource
         ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Actions\ViewAction::make(),
+                Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -53,6 +55,8 @@ class StoryResource extends Resource
             'index' => Pages\ListStories::route('/'),
             'create' => Pages\CreateStory::route('/create'),
             'edit' => Pages\EditStory::route('/{record}/edit'),
+            'view' => Pages\ViewStory::route('/{record}'),
+
         ];
     }
 }
