@@ -16,7 +16,7 @@ services:
     networks:
       - storywriter
     command: >
-      sh -c "php artisan storage:link && php-fpm"
+      sh -c "php artisan storage:link || true && php-fpm"
 
   # Nginx Web Server
   web:
