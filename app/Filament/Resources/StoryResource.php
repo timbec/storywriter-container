@@ -53,14 +53,7 @@ class StoryResource extends Resource
     {
         return [
             'index' => Pages\ListStories::route('/'),
-<<<<<<< HEAD
-            'create' => Pages\CreateStory::route('/create'),
-            'edit' => Pages\EditStory::route('/{record}/edit'),
-            'view' => Pages\ViewStory::route('/{record}'),
-
-=======
             'view' => Pages\ShowStory::route('/{record}'),
->>>>>>> clean-branch
         ];
     }
 }
