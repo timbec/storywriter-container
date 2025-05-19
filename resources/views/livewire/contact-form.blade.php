@@ -20,7 +20,7 @@
 
         <div class="mb-4">
             <label class="block mb-1 font-medium text-gray-700">Message</label>
-            <textarea wire:model="message" rows="5" class="w-full border border-gray-300 px-3 py-2 rounded"></textarea>
+            <textarea wire:model="userMessage" rows="5" class="w-full border border-gray-300 px-3 py-2 rounded"></textarea>
             @error('message') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
         </div>
 

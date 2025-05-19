@@ -17,11 +17,13 @@ class ContactFormSubmitted extends Mailable
 
     public $name;
     public $email;
+    public $userMessage; // rename from 'message'
 
-    public function __construct($name, $email)
+    public function __construct($name, $email, $userMessage)
     {
         $this->name = $name;
         $this->email = $email;
+        $this->userMessage = $userMessage;
     }
 
     public function build()
