@@ -122,9 +122,6 @@ php artisan serve
 
 
 ### AS OF JUNE 3rd (after adding login): 
-Exactly — since your partner already has the Laravel environment set up, they’ll just need to run a couple of commands to sync up:
-
----
 
 
 1. **Pull the latest changes from Git**
