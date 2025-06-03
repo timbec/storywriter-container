@@ -40,7 +40,13 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+            'storybook' => [
+                'driver' => 'session',
+                'provider' => 'storybook_users',
+            ],
     ],
+
+
 
     /*
     |--------------------------------------------------------------------------
@@ -64,6 +70,12 @@ return [
             'driver' => 'eloquent',
             'model' => env('AUTH_MODEL', App\Models\User::class),
         ],
+
+        'storybook_users' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\StorybookUser::class,
+        ],
+
 
         // 'users' => [
         //     'driver' => 'database',
