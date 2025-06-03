@@ -119,3 +119,61 @@ php artisan make:filament-user
 npm install
 npm run dev
 php artisan serve
+
+
+### AS OF JUNE 3rd (after adding login): 
+Exactly — since your partner already has the Laravel environment set up, they’ll just need to run a couple of commands to sync up:
+
+---
+
+
+1. **Pull the latest changes from Git**
+
+```bash
+git pull origin develop
+```
+
+2. **Install any new dependencies** (just in case)
+
+```bash
+composer install
+```
+
+3. **Run the new migration** (for `storybook_users`)
+
+```bash
+php artisan migrate
+```
+
+4. **Clear config cache** (needed for new guard)
+
+```bash
+php artisan config:clear
+php artisan config:cache
+```
+
+5. **Run the dev server**
+
+```bash
+php artisan serve
+```
+
+6. **(Optional) Run Vite if Tailwind/UI is involved**
+
+```bash
+npm install
+npm run dev
+```
+
+---
+
+### 🧪 Quick Test Instructions
+
+
+
+* Visit `/storybook` — should redirect to `/storybook/login`
+* Enter name + email — should be redirected back to the app
+* `/admin` (or wherever Filament lives) will now show “Storybook Users”
+
+---
+
