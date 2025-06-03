@@ -117,8 +117,6 @@ php artisan make:filament-user
 npm install
 npm run dev
 php artisan serve
-<<<<<<< HEAD
-=======
 
 
 ### AS OF JUNE 3rd (after adding login): 
@@ -163,12 +161,10 @@ php artisan serve
 ```bash
 npm install
 npm run dev
->>>>>>> 321a7dfe0138457df94b97fafe81a74743e7f2fa
 ```
 
 ---
 
-<<<<<<< HEAD
 ## 🐳 Docker Deployment
 
 ### Prerequisites
@@ -253,7 +249,6 @@ For now, keep the SQLite configuration:
 DB_CONNECTION=sqlite
 DB_DATABASE=database/database.sqlite
 ```
-=======
 ### 🧪 Quick Test Instructions
 
 
@@ -264,4 +259,3 @@ DB_DATABASE=database/database.sqlite
 
 ---
 
->>>>>>> 321a7dfe0138457df94b97fafe81a74743e7f2fa
