@@ -1,17 +1,14 @@
 @extends('layouts.app')
 
-@section('title', 'Storybook')
-
 @section('content')
-    <h1>Story Writer Page</h1>
-    <form method="GET" action="{{ route('storybook.logout') }}">
-    <button type="submit" class="text-sm text-red-600 underline">
-        Log out
-    </button>
-</form>
-    <iframe
-        src="{{ config('app.storywriter_url') }}/storywriter"
-        style="width: 100%; height: 100vh; border: 0;"
-        allow="clipboard-write"
-    ></iframe>
+<div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-6">Your Storybook</h1>
+    <p class="text-gray-600 mb-8">Welcome back! Ready to write some stories?</p>
+    
+    <!-- Story creation interface would go here -->
+    <div class="bg-white rounded-lg shadow p-6">
+        <h2 class="text-xl font-semibold mb-4">Create New Story</h2>
+        <p class="text-gray-600">Story creation interface coming soon...</p>
+    </div>
+</div>
 @endsection
