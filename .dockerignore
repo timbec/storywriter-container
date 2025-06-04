@@ -3,3 +3,11 @@ node_modules
 vendor
 .git
 .env
+*.log
+.DS_Store
+database/database.sqlite
+bootstrap/cache/*
+storage/logs/*
+storage/framework/cache/*
+storage/framework/sessions/*
+storage/framework/views/*

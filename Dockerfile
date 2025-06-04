@@ -34,24 +34,24 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 RUN groupadd -g 1000 www
 RUN useradd -u 1000 -ms /bin/bash -g www www
 
-# Copy existing application directory contents - excluding storage links
+# Copy existing application directory contents
 COPY --chown=www:www . /var/www
 
-# Remove potential symbolic links causing issues
-RUN rm -rf /var/www/public/storage || true
+# Copy and set up entrypoint script
+COPY docker/entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
 
 # Create necessary directories with proper permissions
-RUN mkdir -p /var/www/storage/app/public
-RUN mkdir -p /var/www/storage/framework/cache
-RUN mkdir -p /var/www/storage/framework/sessions
-RUN mkdir -p /var/www/storage/framework/views
-RUN mkdir -p /var/www/storage/logs
-RUN mkdir -p /var/www/bootstrap/cache
+RUN mkdir -p /var/www/storage/app/public \
+    /var/www/storage/framework/cache \
+    /var/www/storage/framework/sessions \
+    /var/www/storage/framework/views \
+    /var/www/storage/logs \
+    /var/www/bootstrap/cache
 
 # Set permissions
 RUN chown -R www:www /var/www
-RUN chmod -R 755 /var/www/storage
-RUN chmod -R 755 /var/www/bootstrap/cache
+RUN chmod -R 755 /var/www/storage /var/www/bootstrap/cache
 
 # Switch to non-root user
 USER www
@@ -59,5 +59,5 @@ USER www
 # Expose port 9000 for PHP-FPM
 EXPOSE 9000
 
-# Start PHP-FPM
-CMD ["php-fpm"]
+# Use entrypoint script
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
