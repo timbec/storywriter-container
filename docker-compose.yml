@@ -30,17 +30,6 @@ services:
     networks:
       - storywriter
 
-  node:
-    image: node:18
-    container_name: storywriter_node
-    volumes:
-      - .:/var/www
-    working_dir: /var/www
-    command: >
-      sh -c "npm install && npm run build"
-    networks:
-      - storywriter
-
 networks:
   storywriter:
     driver: bridge

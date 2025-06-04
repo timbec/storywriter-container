@@ -48,6 +48,21 @@ php artisan migrate --force --no-interaction
 echo "🔗 Creating storage link..."
 php artisan storage:link --force || true
 
+# Build frontend assets
+echo "🎨 Building frontend assets..."
+if [ ! -d "node_modules" ]; then
+    npm install --silent
+fi
+
+# Remove any existing build directory and recreate
+rm -rf public/build 2>/dev/null || true
+mkdir -p public/build
+
+# Run build with explicit output directory
+npm run build --silent || {
+    echo "⚠️ Frontend build failed, continuing without assets..."
+}
+
 # Clear and cache config for production
 echo "⚡ Optimizing application..."
 php artisan config:clear
@@ -55,10 +70,10 @@ php artisan config:cache
 php artisan route:cache
 php artisan view:cache
 
-# Set proper permissions
+# Set proper permissions (skip if volume-mounted)
 echo "🔒 Setting file permissions..."
-chown -R www:www /var/www/storage /var/www/bootstrap/cache
-chmod -R 775 /var/www/storage /var/www/bootstrap/cache
+chown -R www:www /var/www/storage /var/www/bootstrap/cache 2>/dev/null || echo "⚠️ Permission changes skipped (volume mounted)"
+chmod -R 775 /var/www/storage /var/www/bootstrap/cache 2>/dev/null || echo "⚠️ Permission changes skipped (volume mounted)"
 
 echo "✅ Laravel application setup complete!"
 
