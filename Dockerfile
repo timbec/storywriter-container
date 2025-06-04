@@ -18,16 +18,20 @@ RUN apt-get update && apt-get install -y \
     libzip-dev \
     libonig-dev \
     libsqlite3-dev \
+    sqlite3 \
     nodejs \
     npm
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Install PHP extensions
-RUN docker-php-ext-install pdo_sqlite mbstring zip exif pcntl
+# Install PHP extensions with explicit SQLite support
+RUN docker-php-ext-install pdo pdo_sqlite mbstring zip exif pcntl
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg
 RUN docker-php-ext-install gd
+
+# Verify SQLite extension is loaded
+RUN php -m | grep -i sqlite
 
 # Install composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
@@ -49,11 +53,12 @@ RUN mkdir -p /var/www/storage/app/public \
     /var/www/storage/framework/sessions \
     /var/www/storage/framework/views \
     /var/www/storage/logs \
-    /var/www/bootstrap/cache
+    /var/www/bootstrap/cache \
+    /var/www/database
 
 # Set permissions
 RUN chown -R www:www /var/www
-RUN chmod -R 755 /var/www/storage /var/www/bootstrap/cache
+RUN chmod -R 755 /var/www/storage /var/www/bootstrap/cache /var/www/database
 
 # Switch to non-root user
 USER www
