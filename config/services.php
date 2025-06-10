@@ -35,4 +35,12 @@ return [
         ],
     ],
 
+    'storybook' => [
+        'url' => env('STORYWRITER_API_KEY'),
+    ],
+
+    'storywriter' => [
+         'api_key' => env('STORYWRITER_API_KEY'),
+    ],
+
 ];
