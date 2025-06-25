@@ -11,6 +11,8 @@ use App\Http\Controllers\StorybookLoginController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
+use App\Models\Page;
+
 
 Route::get('/blog', function () {
     $posts = BlogPost::whereNotNull('published_at')->latest()->get();
@@ -21,6 +23,12 @@ Route::get('/blog/{slug}', function ($slug) {
     $post = BlogPost::where('slug', $slug)->firstOrFail();
     return view('blog.show', compact('post'));
 });
+
+//Returns the pages
+// Route::get('/{slug}', function ($slug) {
+//     $page = Page::where('slug', $slug)->firstOrFail();
+//     return view('pages.show', compact('page'));
+// });
 
 Route::view('/', 'pages.home')->name('home');
 Route::view('/about', 'pages.about')->name('about');
