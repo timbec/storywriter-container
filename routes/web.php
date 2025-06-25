@@ -49,3 +49,5 @@ Route::get('/stories', function () {
 });
 
 Route::get('/stories/{id}', [StoryController::class, 'show']);
+
+
