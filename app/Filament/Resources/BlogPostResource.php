@@ -46,6 +46,7 @@ class BlogPostResource extends Resource
                 ->maxLength(500),
     
             FileUpload::make('cover_image')
+                ->disk('public')
                 ->image()
                 ->directory('blog')
                 ->imageEditor()
@@ -55,7 +56,8 @@ class BlogPostResource extends Resource
                 ->label('Content')
                 ->profile('default')
                 ->required()
-                ->columnSpanFull(),
+                ->columnSpanFull()
+                ->extraAttributes(['style' => 'min-height: 600px']),
     
             DateTimePicker::make('published_at'),
         ]);
@@ -72,13 +74,13 @@ class BlogPostResource extends Resource
     }
 
     public static function getPages(): array
-{
-    return [
-        'index' => Pages\ListBlogPosts::route('/'),
-        'create' => Pages\CreateBlogPost::route('/create'),
-        'edit' => Pages\EditBlogPost::route('/{record}/edit'),
-    ];
-}
+    {
+        return [
+            'index' => Pages\ListBlogPosts::route('/'),
+            'create' => Pages\CreateBlogPost::route('/create'),
+            'edit' => Pages\EditBlogPost::route('/{record}/edit'),
+        ];
+    }
 
 
 

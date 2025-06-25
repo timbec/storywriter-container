@@ -28,6 +28,7 @@
         <div class="max-w-4xl mx-auto p-4 bg-green-100 text-green-800">
             {{ session('success') }}
         </div>
+    @endif
 
     {{-- Main content --}}
     <main class="max-w-4xl mx-auto p-6">
