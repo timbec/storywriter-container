@@ -104,4 +104,17 @@ return [
 
     'system_route_prefix' => 'filament',
 
+        /*
+    |--------------------------------------------------------------------------
+    | Authentication Guard
+    |--------------------------------------------------------------------------
+    |
+    | This is the guard Filament will use to authenticate users.
+    |
+    */
+
+    'auth' => [
+        'guard' => 'web',
+    ],
+
 ];
